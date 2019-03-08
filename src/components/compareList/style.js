@@ -3,7 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   margin-top: 50px;
 `;
 
@@ -14,7 +16,7 @@ export const Repository = styled.div`
   border-radius: 3px;
   display: flex;
   flex-direction: column;
-  margin: 0 10px;
+  margin: 10px;
   header {
     padding: 30px;
     display: flex;
@@ -22,7 +24,6 @@ export const Repository = styled.div`
     align-items: center;
     img {
       width: 100px;
-      border-radius: 50%;
     }
     strong {
       font-size: 26px;

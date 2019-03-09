@@ -8,6 +8,7 @@ import api from '../../services/api';
 
 export default class Main extends Component {
   state = {
+    loading: false,
     repositoryError: false,
     repositoryInput: '',
     repositories: [],
@@ -15,6 +16,7 @@ export default class Main extends Component {
 
   handledRepository = async (e) => {
     e.preventDefault();
+    this.setState({ loading: true });
     try {
       const { repositories, repositoryInput } = this.state;
       const { data: repository } = await api.get(`repos/${repositoryInput}`);
@@ -26,11 +28,15 @@ export default class Main extends Component {
       });
     } catch (error) {
       this.setState({ repositoryError: true });
+    } finally {
+      this.setState({ loading: false });
     }
   };
 
   render() {
-    const { repositories, repositoryInput, repositoryError } = this.state;
+    const {
+      repositories, repositoryInput, repositoryError, loading,
+    } = this.state;
     return (
       <Container withError={repositoryError}>
         <img src={logo} alt="Github Compare logo" />
@@ -41,7 +47,9 @@ export default class Main extends Component {
             value={repositoryInput}
             onChange={e => this.setState({ repositoryInput: e.target.value })}
           />
-          <button type="submit">Ok</button>
+          <button type="submit">
+            {loading ? <i className="fas fa-spinner fa-pulse" /> : 'Ok'}
+          </button>
         </Form>
         <span className="msgError">Repositório não encontrado...</span>
         <CompareList repositories={repositories} />

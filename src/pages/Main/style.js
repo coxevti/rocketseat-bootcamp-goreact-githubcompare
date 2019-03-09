@@ -6,6 +6,16 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding-top: 60px;
+  .msgError {
+    display: ${props => (props.withError ? 'inline' : 'none')};
+    margin-top: 20px;
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 20px;
+    border: 1px dashed #fff;
+  }
 `;
 
 export const Form = styled.form`
@@ -19,10 +29,10 @@ export const Form = styled.form`
     height: 50px;
     padding: 0 20px;
     background: #fff;
-    border: 0;
     font-size: 18px;
     border-radius: 30px 0px 0px 30px;
     color: #333;
+    border: 0;
   }
 
   button {

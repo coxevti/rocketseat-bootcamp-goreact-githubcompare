@@ -1,12 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Container, Repository } from './style';
+import { Container, Options, Repository } from './style';
 
-const CompareList = ({ repositories }) => (
+const CompareList = ({ repositories, repositorySync, repositoryDelete }) => (
   <Container>
     {repositories.map(repository => (
       <Repository key={repository.id}>
+        <Options>
+          <button type="button" onClick={() => repositorySync(repository.id)}>
+            <i className="fas fa-sync" />
+          </button>
+          <button type="button" onClick={() => repositoryDelete(repository.id)}>
+            <i className="fas fa-times" />
+          </button>
+        </Options>
         <header>
           <img src={repository.owner.avatar_url} alt={repository.owner.login} />
           <strong>{repository.name}</strong>
@@ -50,6 +58,8 @@ CompareList.propTypes = {
       }),
     }),
   ).isRequired,
+  repositorySync: PropTypes.func.isRequired,
+  repositoryDelete: PropTypes.func.isRequired,
 };
 
 export default CompareList;

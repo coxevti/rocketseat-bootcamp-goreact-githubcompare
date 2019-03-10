@@ -9,6 +9,20 @@ export const Container = styled.div`
   margin-top: 50px;
 `;
 
+export const Options = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  button {
+    border: 0;
+    background: #fff;
+    margin-top: 10px;
+    margin-right: 10px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+`;
+
 export const Repository = styled.div`
   @import url('https://fonts.googleapis.com/css?family=PT+Sans|Roboto');
   width: 250px;
